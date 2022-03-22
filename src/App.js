@@ -12,11 +12,29 @@ class App extends Component {
       { id: 4, value: 0 },
     ],
   };
+  constructor() {
+    super();
+    console.log("App-Constructor");
+  }
+
+  componentDidMount() {
+    console.log("App-Mounted");
+  }
+
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
     counters[index].value++;
+    console.log(this.state.counters[index]);
+    this.setState({ counters });
+  };
+
+  handleDecrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value--;
     console.log(this.state.counters[index]);
     this.setState({ counters });
   };
@@ -37,6 +55,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("App-rendered");
     return (
       <div className="App">
         <NavBar
@@ -47,6 +66,7 @@ class App extends Component {
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
         </main>
