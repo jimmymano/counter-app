@@ -56,10 +56,13 @@ class App extends Component {
 
   render() {
     console.log("App-rendered");
+    let sum = 0;
+    this.state.counters.forEach((counter) => (sum += counter.value));
     return (
       <div className="App">
         <NavBar
-          totalCounters={this.state.counters.filter((c) => c.value > 0).length}
+          // totalCounters={this.state.counters.filter((c) => c.value > 0).length}
+          totalCounters={sum}
         />
         <main className="container">
           <Counters
